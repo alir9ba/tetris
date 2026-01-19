@@ -1,15 +1,17 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
-import { TETROMINOS } from '../constants/tetrominos';
+import { TETROMINOS } from '../constants/tetrominos'; // Make sure this path matches your file structure
 
-const { width } = Dimensions.get('window');
-// Calculate cell size: (Screen Width - Padding) / 10 columns
-const CELL_SIZE = (width - 40) / 10; 
+const { width, height } = Dimensions.get('window');
+
+// --- THE FIX: MAKE THE GRID SMALLER ---
+// We use 65% of the screen width (0.65) to ensure the height (which is 2x width) fits.
+const GRID_WIDTH = width * 0.65;
+const CELL_SIZE = GRID_WIDTH / 10; 
 
 const GridBoard = ({ stage, player }) => {
-  // Create a display grid that combines the saved stage + the moving player
   const getDisplayStage = () => {
-    const displayStage = stage.map(row => [...row]); // Copy
+    const displayStage = stage.map(row => [...row]); 
     
     if (!player.collided) {
       player.tetromino.forEach((row, y) => {
@@ -56,6 +58,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#000',
     backgroundColor: '#fff',
+    // Center the board itself if needed
+    alignSelf: 'center',
   },
   row: {
     flexDirection: 'row',
