@@ -58,16 +58,30 @@ const GameScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    // This pushes the Header to top, Controls to bottom, and Grid to middle
+    justifyContent: 'space-between', 
+    paddingBottom: 20, // Adds space at the very bottom so controls aren't on the edge
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 20,
+    paddingTop: 40, // Extra padding for status bar visibility
   },
-  headerText: { fontSize: 18, fontWeight: 'bold' },
-  gameArea: { alignItems: 'center', justifyContent: 'center' },
+  headerText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  gameArea: {
+    flex: 1, // Allows the grid to take up the available middle space
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   
-  // Modal Styles
+  // --- Modal Styles (Unchanged) ---
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.5)',
